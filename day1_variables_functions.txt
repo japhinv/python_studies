@@ -1,0 +1,99 @@
+Notes: Variables & Functions
+Variables store data values (like name, age, email).
+Functions are reusable blocks of code that perform tasks.
+Variables can be strings, numbers, or other data types.
+Functions are defined using def and can take inputs (parameters) and return outputs.
+
+Code Examples
+# Gmail Registration
+
+name = "xxx"
+phone_number = "xxxxxxxxxx"
+new_emailid = "xxx@gmail.com"
+recovery_emailid = "yyy@gmail.com"
+state = "Tamil Nadu"
+country = "India"
+pincode = "xxxxxx"
+
+  # Aadhaar Registration
+
+aadhar_number = "xxxxxxxxxxxx"
+full_name = "xxx"
+father_name = "yyy"
+mother_name = "zzz"
+date_of_birth = "dd-mm-yyyy"
+gender = "Male/Female"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+village = "xxx"
+city = "xxx"
+district = "xxx"
+state = "Tamil Nadu"
+pincode = "xxxxxx"
+
+  # Student Registration
+
+student_id = "STU001"
+student_name = "xxx"
+date_of_birth = "dd-mm-yyyy"
+gender = "Male/Female"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+department = "xxx"
+course_name = "xxx"
+year_of_study = 2
+parent_name = "yyy"
+parent_mobile = "xxxxxxxxxx"
+
+  # Employee Registration
+
+employee_id = "EMP001"
+employee_name = "xxx"
+date_of_birth = "dd-mm-yyyy"
+gender = "Male/Female"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+department = "xxx"
+designation = "xxx"
+salary = 50000
+joining_date = "dd-mm-yyyy"
+
+  # Online Shopping Registration
+
+customer_id = "CUS001"
+customer_name = "xxx"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+password = "xxx@123"
+address = "xxx"
+city = "xxx"
+state = "Tamil Nadu"
+country = "India"
+pincode = "xxxxxx"
+
+  # Bank Account Registration
+
+account_number = "xxxxxxxxxx"
+customer_name = "xxx"
+date_of_birth = "dd-mm-yyyy"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+branch_name = "xxx"
+account_type = "Savings"
+nominee_name = "yyy"
+
+  # Vehicle Registration
+
+vehicle_number = "TN00XX0000"
+owner_name = "xxx"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+vehicle_type = "Car/Bike"
+model_name = "xxx"
+engine_number = "ENG12345"
+chassis_number = "CHS12345"
