@@ -1,99 +1,149 @@
-Notes: Variables & Functions
-Variables store data values (like name, age, email).
-Functions are reusable blocks of code that perform tasks.
-Variables can be strings, numbers, or other data types.
-Functions are defined using def and can take inputs (parameters) and return outputs.
+# Day 1 - Variables and Functions
 
-Code Examples
+## Learning Notes
+- Variables are used to store data in Python.
+- A variable can store text, numbers, and boolean values.
+- Meaningful variable names make code easy to understand.
+- Functions are reusable blocks of code that perform a specific task.
+- Parameters allow functions to receive input values.
+- Variables help manage information efficiently in real-world applications.
+- Registration forms such as Gmail, Aadhaar, and Bank Account use multiple variables to store user details.
+
+## Variable Declaration Examples
+
 # Gmail Registration
 
-name = "xxx"
+first_name = "xxx"
+last_name = "yyy"
+username = "xxxyyy123"
+password = "xxx@123"
+confirm_password = "xxx@123"
 phone_number = "xxxxxxxxxx"
-new_emailid = "xxx@gmail.com"
-recovery_emailid = "yyy@gmail.com"
+recovery_email = "yyy@gmail.com"
+date_of_birth = "dd-mm-yyyy"
+gender = "Male/Female"
 state = "Tamil Nadu"
 country = "India"
 pincode = "xxxxxx"
 
-  # Aadhaar Registration
+# Aadhaar Registration
 
 aadhar_number = "xxxxxxxxxxxx"
-full_name = "xxx"
-father_name = "yyy"
-mother_name = "zzz"
+full_name = "xxx yyy"
+father_name = "xxx"
+mother_name = "yyy"
 date_of_birth = "dd-mm-yyyy"
 gender = "Male/Female"
 mobile_number = "xxxxxxxxxx"
 email = "xxx@gmail.com"
-address = "xxx"
+house_number = "xx"
+street_name = "xxx Street"
+area_name = "xxx Nagar"
 village = "xxx"
 city = "xxx"
 district = "xxx"
 state = "Tamil Nadu"
+country = "India"
 pincode = "xxxxxx"
 
-  # Student Registration
+# Hospital Registration
 
-student_id = "STU001"
+patient_id = "PAT001"
+patient_name = "xxx"
+age = 25
+gender = "Male/Female"
+blood_group = "O+"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+doctor_name = "yyy"
+appointment_date = "dd-mm-yyyy"
+
+# College Admission
+
+application_id = "APP001"
 student_name = "xxx"
 date_of_birth = "dd-mm-yyyy"
 gender = "Male/Female"
 mobile_number = "xxxxxxxxxx"
 email = "xxx@gmail.com"
 address = "xxx"
-department = "xxx"
 course_name = "xxx"
-year_of_study = 2
+department = "xxx"
+mark_percentage = 85
 parent_name = "yyy"
 parent_mobile = "xxxxxxxxxx"
 
-  # Employee Registration
+# Railway Ticket Booking
 
-employee_id = "EMP001"
-employee_name = "xxx"
-date_of_birth = "dd-mm-yyyy"
+passenger_name = "xxx"
+age = 25
 gender = "Male/Female"
 mobile_number = "xxxxxxxxxx"
 email = "xxx@gmail.com"
+source_station = "xxx"
+destination_station = "yyy"
+travel_date = "dd-mm-yyyy"
+seat_type = "Sleeper"
+
+# Flight Booking
+
+passenger_name = "xxx"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+passport_number = "XXXXXXXX"
+source_airport = "xxx"
+destination_airport = "yyy"
+travel_date = "dd-mm-yyyy"
+seat_class = "Economy"
+
+# Hotel Reservation
+
+guest_name = "xxx"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+check_in_date = "dd-mm-yyyy"
+check_out_date = "dd-mm-yyyy"
+room_type = "Deluxe"
+number_of_guests = 2
+
+# Job Application
+
+applicant_name = "xxx"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
 address = "xxx"
-department = "xxx"
-designation = "xxx"
-salary = 50000
+qualification = "M.Sc AI & DS"
+experience = 1
+skills = "Python, Machine Learning"
+job_role = "AI Engineer"
+
+# Library Membership
+
+member_id = "LIB001"
+member_name = "xxx"
+mobile_number = "xxxxxxxxxx"
+email = "xxx@gmail.com"
+address = "xxx"
+membership_type = "Student"
 joining_date = "dd-mm-yyyy"
 
-  # Online Shopping Registration
+# Food Delivery Registration
 
-customer_id = "CUS001"
 customer_name = "xxx"
 mobile_number = "xxxxxxxxxx"
 email = "xxx@gmail.com"
-password = "xxx@123"
 address = "xxx"
 city = "xxx"
 state = "Tamil Nadu"
-country = "India"
 pincode = "xxxxxx"
+payment_method = "UPI"
 
-  # Bank Account Registration
+✅ Function Example (to show usage)
+python
+# Function Example
+def greet_user(name):
+    return "Welcome, " + name + "! Your registration is successful."
 
-account_number = "xxxxxxxxxx"
-customer_name = "xxx"
-date_of_birth = "dd-mm-yyyy"
-mobile_number = "xxxxxxxxxx"
-email = "xxx@gmail.com"
-address = "xxx"
-branch_name = "xxx"
-account_type = "Savings"
-nominee_name = "yyy"
-
-  # Vehicle Registration
-
-vehicle_number = "TN00XX0000"
-owner_name = "xxx"
-mobile_number = "xxxxxxxxxx"
-email = "xxx@gmail.com"
-address = "xxx"
-vehicle_type = "Car/Bike"
-model_name = "xxx"
-engine_number = "ENG12345"
+print(greet_user("YYY"))
 chassis_number = "CHS12345"
