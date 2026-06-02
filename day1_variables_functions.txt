@@ -147,3 +147,116 @@ def greet_user(name):
 
 print(greet_user("YYY"))
 chassis_number = "CHS12345"
+
+
+#Day 2
+
+PROGRAM 1
+========================================
+def get_details():
+    # Collect all inputs and return them as a group
+    app_id = input("Application ID: ")
+    name = input("Student Name: ")
+    dob = input("Date of Birth: ")
+    gen = input("Gender: ")
+    mob = input("Mobile: ")
+    email = input("Email: ")
+    addr = input("Address: ")
+    course = input("Course: ")
+    dept = input("Department: ")
+    marks = input("Mark Percentage: ")
+    p_name = input("Parent Name: ")
+    p_mob = input("Parent Mobile: ")
+    
+    # Send them to the print function
+    print_details(app_id, name, dob, gen, mob, email, addr, course, dept, marks, p_name, p_mob)
+
+def print_details(app_id, name, dob, gen, mob, email, addr, course, dept, marks, p_name, p_mob):
+    print("\n--- Summary ---")
+    print("ID:", app_id)
+    print("Name:", name)
+    print("DOB:", dob)
+    print("Gender:", gen)
+    print("Mobile:", mob)
+    print("Email:", email)
+    print("Address:", addr)
+    print("Course:", course)
+    print("Dept:", dept)
+    print("Marks:", marks)
+    print("Parent:", p_name)
+    print("Parent Mobile:", p_mob)
+
+# Run the program
+get_details()
+
+
+
+========================================
+PROGRAM 2
+========================================
+
+def get_details():
+    # Collect all inputs
+    app_id = input("Application ID: ")
+    name = input("Student Name: ")
+    dob = input("Date of Birth: ")
+    gen = input("Gender: ")
+    mob = input("Mobile: ")
+    email = input("Email: ")
+    addr = input("Address: ")
+    course = input("Course: ")
+    dept = input("Department: ")
+    marks = input("Mark Percentage: ")
+    p_name = input("Parent Name: ")
+    p_mob = input("Parent Mobile: ")
+    
+    # Return all variables as a tuple
+    return app_id, name, dob, gen, mob, email, addr, course, dept, marks, p_name, p_mob
+
+def print_details(app_id, name, dob, gen, mob, email, addr, course, dept, marks, p_name, p_mob):
+    print("\n--- Summary ---")
+    print("ID:", app_id)
+    print("Name:", name)
+    print("DOB:", dob)
+    print("Gender:", gen)
+    print("Mobile:", mob)
+    print("Email:", email)
+    print("Address:", addr)
+    print("Course:", course)
+    print("Dept:", dept)
+    print("Marks:", marks)
+    print("Parent:", p_name)
+    print("Parent Mobile:", p_mob)
+
+# 1. Get the returned values
+data = get_details()
+
+# 2. Pass the values into the print function using the * operator
+print_details(*data)
+
+========================================
+MY UNDERSTANDING
+========================================
+
+Program 1:
+- Collects input from the user.
+- Directly calls print_details().
+- No return statement is used.
+
+Program 2:
+- Collects input from the user.
+- Returns all values using return.
+- Stores returned values in a variable.
+- Uses *data while calling print_details().
+
+Difference:
+- Program 1 directly passes values to another function.
+- Program 2 returns values first and then passes them later.
+- Program 2 is more flexible because returned data can be reused.
+
+Today's Learnings:
+- Variables store data.
+- input() gets runtime values from users.
+- Functions help organize code.
+- Function arguments pass data.
+- return sends data back from a function
