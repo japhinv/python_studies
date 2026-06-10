@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineReserve - Movie Ticket Booking</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: #15161e;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #f43f5e;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            stroke: #6366f1;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .search-section {
+            background: rgba(21, 22, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .search-section h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .search-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+
+        .search-button {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--gradient);
+            color: white;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .search-button:hover {
+            transform: scale(1.03);
+            opacity: 0.95;
+        }
+
+        .genre-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .genre-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .genre-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .movie-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(99, 102, 241, 0.1);
+        }
+
+        .card-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            position: relative;
+            background-color: #222;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 0.8rem;
+        }
+
+        .card-genre {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.8rem;
+        }
+
+        .card-seats {
+            font-weight: 600;
+        }
+
+        .card-seats.low {
+            color: var(--accent);
+        }
+
+        .card-seats.good {
+            color: #10b981;
+        }
+
+        .card-button {
+            display: block;
+            text-align: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.2s ease;
+        }
+
+        .card-button:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        footer {
+            margin-top: auto;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            border-top: 1px solid var(--glass-border);
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .search-section {
+                padding: 1.5rem;
+            }
+            .search-form {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .search-input {
+                border-radius: 8px;
+            }
+            .search-button {
+                border-radius: 8px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <!-- Movie Reel Icon SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <line x1="7.17" y1="16.83" x2="16.83" y2="7.17"></line>
+                <line x1="7.17" y1="7.17" x2="16.83" y2="16.83"></line>
+            </svg>
+            CineReserve
+        </div>
+        <div>
+            <a href="/" style="color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem;">Browse All</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <h1>Book Your Big Screen Experience</h1>
+            <p>Find showtimes, reserve seats, and book tickets instantly.</p>
+
+            {% if error %}
+                <div class="error-message">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form class="search-form" action="/search" method="POST">
+                <input type="text" name="query" class="search-input" placeholder="Search by movie name or genre..." value="{{ query if query else '' }}" required>
+                <button type="submit" class="search-button">Search</button>
+            </form>
+
+            <div class="genre-tags">
+                <span style="align-self: center; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">Popular Genres:</span>
+                <form action="/search" method="POST" style="display:inline;">
+                    <input type="hidden" name="query" value="Sci-Fi">
+                    <button type="submit" class="genre-tag">Sci-Fi</button>
+                </form>
+                <form action="/search" method="POST" style="display:inline;">
+                    <input type="hidden" name="query" value="Drama">
+                    <button type="submit" class="genre-tag">Drama</button>
+                </form>
+                <form action="/search" method="POST" style="display:inline;">
+                    <input type="hidden" name="query" value="Action">
+                    <button type="submit" class="genre-tag">Action</button>
+                </form>
+                <form action="/search" method="POST" style="display:inline;">
+                    <input type="hidden" name="query" value="Animation">
+                    <button type="submit" class="genre-tag">Animation</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Movie List Section -->
+        <h2 class="section-title">
+            {% if query %}
+                Search Results for "{{ query }}"
+            {% else %}
+                Now Showing
+            {% endif %}
+        </h2>
+
+        <section class="movies-grid">
+            {% for movie_id, details in movies.items() %}
+                <div class="movie-card">
+                    <div style="position: relative; overflow: hidden; height: 200px;">
+                        <img src="{{ details.banner }}" alt="{{ details.title }}" class="card-banner">
+                        <div class="card-badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="color: #fbbf24;">
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            </svg>
+                            {{ details.rating }}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-genre">{{ details.genre }}</span>
+                        <h3 class="card-title">{{ details.title }}</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{ details.synopsis }}
+                        </p>
+                        <div class="card-details">
+                            <span>🕒 {{ details.showtime }}</span>
+                            <span class="card-seats {% if details.seats < 6 %}low{% else %}good{% endif %}">
+                                {% if details.seats == 0 %}
+                                    Sold Out
+                                {% else %}
+                                    {{ details.seats }} seats left
+                                {% endif %}
+                            </span>
+                        </div>
+                        {% if details.seats > 0 %}
+                            <a href="/movie/{{ movie_id }}" class="card-button">Book Ticket</a>
+                        {% else %}
+                            <button class="card-button" style="opacity: 0.5; cursor: not-allowed;" disabled>Sold Out</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CineReserve. Developed with ❤️ in Python Flask.</p>
+    </footer>
+
+</body>
+</html>

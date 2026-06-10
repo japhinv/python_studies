@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed! - CineReserve</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: #15161e;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #f43f5e;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ticket-container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .ticket-header {
+            background: var(--gradient);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Confirmed icon check */
+        .check-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .check-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke-width: 3;
+        }
+
+        .ticket-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .ticket-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Cutout circles on the sides to mimic ticket */
+        .ticket-divider {
+            position: relative;
+            height: 20px;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ticket-divider::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            border-right: 1px solid var(--glass-border);
+        }
+
+        .ticket-divider::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .divider-line {
+            width: 90%;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .ticket-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .detail-item.right {
+            align-items: flex-end;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .val {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .val.movie-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .val.total-price {
+            font-size: 1.4rem;
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        /* Mock QR Code area */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1.5rem 0 0.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .qr-code-box {
+            width: 120px;
+            height: 120px;
+            background: white;
+            padding: 8px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom SVG grid to mimic real QR code */
+        .qr-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .booking-id {
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .btn-home {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-home:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        footer {
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ticket-container">
+        <!-- Ticket Header -->
+        <div class="ticket-header">
+            <div class="check-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+            </div>
+            <h1>Booking Confirmed!</h1>
+            <p>Show your digital pass at the entrance</p>
+        </div>
+
+        <!-- Ticket Divider -->
+        <div class="ticket-divider">
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Ticket Body -->
+        <div class="ticket-body">
+            <div class="detail-item">
+                <span class="label">Movie Title</span>
+                <span class="val movie-title">{{ details.title }}</span>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-item">
+                    <span class="label">Showtime</span>
+                    <span class="val">🕒 {{ details.showtime }}</span>
+                </div>
+                <div class="detail-item right">
+                    <span class="label">Genre</span>
+                    <span class="val">{{ details.genre }}</span>
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-item">
+                    <span class="label">Seats Reserved</span>
+                    <span class="val">🎟️ {{ booked_seats }} Ticket(s)</span>
+                </div>
+                <div class="detail-item right">
+                    <span class="label">Ticket Price</span>
+                    <span class="val">Rs. {{ details.price }} / seat</span>
+                </div>
+            </div>
+
+            <div class="detail-row" style="background: rgba(255, 255, 255, 0.02); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.04);">
+                <div class="detail-item">
+                    <span class="label">Payment Status</span>
+                    <span class="val" style="color: #10b981; font-size: 0.95rem;">Paid Online</span>
+                </div>
+                <div class="detail-item right">
+                    <span class="label">Total Paid</span>
+                    <span class="val total-price">Rs. {{ total_cost }}</span>
+                </div>
+            </div>
+
+            <!-- QR code section -->
+            <div class="qr-section">
+                <div class="qr-code-box">
+                    <!-- Dynamic simulated QR Code grid using paths -->
+                    <svg class="qr-svg" viewBox="0 0 100 100" shape-rendering="crispEdges">
+                        <!-- Top-left Finder Pattern -->
+                        <path d="M0 0h30v30H0z M5 5h20v20H5z M10 10h10v10H10z" fill="#000"/>
+                        <!-- Top-right Finder Pattern -->
+                        <path d="M70 0h30v30H70z M75 5h20v20H75z M80 10h10v10H80z" fill="#000"/>
+                        <!-- Bottom-left Finder Pattern -->
+                        <path d="M0 70h30v30H0z M5 75h20v20H5z M10 80h10v10H10z" fill="#000"/>
+                        <!-- Random QR dots data pattern -->
+                        <path d="M35 5h5v5h-5z M45 0h10v5h-10z M60 5h5v10h-5z M35 15h15v5h-15z M55 15h10v5h-10z M40 25h10v5h-10z M60 25h5v5h-5z M35 35h5v5h-5z M45 35h10v5h-10z M65 35h10v5H65z M80 35h15v5H80z M5 45h10v5H5z M20 45h10v5H20z M35 45h5v5h-5z M50 45h15v5H50z M75 45h5v10h-5z M90 45h10v5H90z M10 55h15v5H10z M35 55h10v5H35z M55 55h5v10h-5z M70 55h5v5h-5z M85 55h10v5H85z M0 65h5v5H0z M15 65h10v5H15z M45 65h15v5H45z M80 65h5v5h-5z M90 65h10v5H90z M35 75h5v15h-5z M45 75h10v5H45z M60 75h5v5h-5z M70 75h15v5H70z M50 85h10v5H50z M65 85h15v5H65z M90 85h5v15h-5z M35 95h10v5H35z M55 95h20v5H55z" fill="#000"/>
+                    </svg>
+                </div>
+                <span class="booking-id">TICKET-ID: CR-{{ movie_id }}-98342</span>
+            </div>
+
+            <a href="/" class="btn-home">Book Another Movie</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Thank you for choosing CineReserve!</p>
+        <p>&copy; 2026 CineReserve Inc.</p>
+    </footer>
+
+</body>
+</html>
